@@ -1,0 +1,61 @@
+# RAG System Configuration
+
+[chunk]
+size = 512
+overlap = 128
+min_size = 64
+
+[bm25]
+k1 = 1.2
+b = 0.75
+
+[hnsw]
+M = 16
+ef_construction = 200
+ef_query = 50
+
+[fusion]
+strategy = "HYBRID"
+bm25_weight = 0.6
+vector_weight = 0.4
+rrf_k = 60.0
+
+[cache]
+capacity = 1000
+ttl_seconds = 3600
+
+[threadpool]
+num_workers = 4
+
+[tuner]
+enable = true
+latency_max_ms = 100.0
+recall_min_pct = 0.85
+ef_delta = 5
+topk_delta = 2
+check_interval_seconds = 30
+
+[sqlite]
+db_path = "rag_store.db"
+vector_extension = "sqlite_vec"
+vector_dimension = 768
+enable_fts5 = true
+enable_wal = true
+cache_size = 10000
+busy_timeout = 30000
+fts5_limit = 50
+vector_limit = 50
+
+[hybrid]
+enable = true
+hot_threshold = 3
+memory_capacity = 1000
+auto_optimize_interval = 300
+enable_smart_caching = true
+parallel_search = true
+memory_first = true
+result_merge_method = "score"
+max_results_per_layer = 20
+enable_benchmark = true
+stats_interval = 100
+cache_hit_threshold = 0.8
